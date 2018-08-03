@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebAnalyzer.Contracts;
+using WebAnalyzer.Core.Services;
 
 namespace WebAnalyzer
 {
@@ -22,6 +24,9 @@ namespace WebAnalyzer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<IPageAnalyzerService, PageAnalyzerService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
