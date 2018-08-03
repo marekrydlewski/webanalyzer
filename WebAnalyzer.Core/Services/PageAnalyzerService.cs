@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using WebAnalyzer.Contracts;
@@ -15,7 +16,12 @@ namespace WebAnalyzer.Core.Services
         {
             HtmlWeb web = new HtmlWeb
             {
-                CaptureRedirect = true
+                CaptureRedirect = true,
+                PreRequest = request =>
+                {
+                    request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                    return true;
+                }
             };
             var htmlDoc = web.Load(args.UriAddress);
 

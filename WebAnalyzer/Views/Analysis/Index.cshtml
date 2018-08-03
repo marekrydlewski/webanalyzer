@@ -1,0 +1,55 @@
+﻿@model WebAnalyzer.Models.PageStatsModel
+
+@{
+    ViewData["Title"] = "Analysis";
+}
+
+<h2>Analyze any site</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UriAddress">Enter an https:// URL:</label>
+                <input asp-for="UriAddress" type="url" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default btn-brand btn-brand-big">
+                    GET STATISTICS
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.Statistics != null)
+{
+    <div>
+        <h4>Occurrences of keywords from metadata:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Keyword</th>
+                    <th scope="col">Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Statistics ?? new Dictionary<string, int>())
+                {
+                    <tr>
+                        <td>@item.Key</td>
+                        <td>@item.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
