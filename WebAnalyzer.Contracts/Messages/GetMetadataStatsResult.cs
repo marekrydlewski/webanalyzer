@@ -6,6 +6,6 @@ namespace WebAnalyzer.Contracts.Messages
 {
     public class GetMetadataStatsResult
     {
-        public Dictionary<string, int> KeyOccurences { get; set; }
+        public Dictionary<string, int> KeyOccurrences { get; set; }
     }
 }
