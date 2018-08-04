@@ -9,6 +9,8 @@ namespace WebAnalyzer.Models
     {
         public Uri UriAddress { get; set; }
 
-        public Dictionary<string, int> Statistics { get; set; }
+        public Dictionary<string, int> KeyOccurrences { get; set; }
+
+        public bool Performed { get; set; }
     }
 }

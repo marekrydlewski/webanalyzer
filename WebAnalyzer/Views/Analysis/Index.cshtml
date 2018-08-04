@@ -24,28 +24,38 @@
     </div>
 </div>
 
-@if (Model.Statistics != null)
+@if (Model.Performed == true)
 {
-    <div>
-        <h4>Occurrences of keywords from metadata:</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Keyword</th>
-                    <th scope="col">Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Statistics ?? new Dictionary<string, int>())
-                {
+    @if (Model.KeyOccurrences != null)
+    {
+        <div>
+            <p>Occurrences of keywords from metadata:</p>
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>@item.Key</td>
-                        <td>@item.Value</td>
+                        <th scope="col">Keyword</th>
+                        <th scope="col">Number of occurrences</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.KeyOccurrences)
+                    {
+                        <tr>
+                            <td>@item.Key</td>
+                            <td>@item.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else {
+        <div>
+            <p>There was a problem with loading site or site does not contain any keywords in metadata.</p>
+            <p>No ideas for site? Try that address: "https://xlinux.nist.gov/dads/", it works!</p>
+        </div>
+    }
+
 }
 
 

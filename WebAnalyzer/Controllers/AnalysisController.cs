@@ -23,8 +23,8 @@ namespace WebAnalyzer.Controllers
             if (model.UriAddress != null)
             {
                 var statsResult = _pageAnalyzer.GetMetadataStats(new GetMetadataStatsArgs { UriAddress = model.UriAddress});
-                model.Statistics = statsResult.KeyOccurences;
- 
+                model.KeyOccurrences = statsResult.KeyOccurrences;
+                model.Performed = true;
             }
             return View(model);
         }
